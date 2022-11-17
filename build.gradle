@@ -31,7 +31,8 @@ jacoco {
     toolVersion = "0.8.7"
 }
 
-test {
+tasks.named('test') {
+    useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
 
