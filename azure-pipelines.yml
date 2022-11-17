@@ -28,12 +28,16 @@ steps:
   inputs:
     gradleWrapperFile: 'gradlew'
     tasks: 'build'
-    publishJUnitResults: false
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: false
+    sonarQubeRunAnalysis: true
+    sqGradlePluginVersionChoice: 'build'
     spotBugsAnalysis: false
-
-
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/*.jar'
+    TargetFolder: '$(build.artifactstagingdirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: 'build/libs/'
