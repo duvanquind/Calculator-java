@@ -23,9 +23,10 @@ steps:
     versionSpec: '17'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
+
 - task: SonarCloudPrepare@1
   inputs:
-    SonarCloud: 'Sonar_Duvan'
+    SonarCloud: 'Sonar_Duvan_Code'
     organization: 'quind'
     scannerMode: 'Other'
 
@@ -44,9 +45,8 @@ steps:
     pollingTimeoutSec: '300'
 - task: sonarcloud-buildbreaker@2
   inputs:
-    SonarCloud: 'Sonar_Duvan'
+    SonarCloud: 'Sonar_Duvan_Code'
     organization: 'quind'
-
 - task: CopyFiles@2
   inputs:
     Contents: '**/*.jar'
