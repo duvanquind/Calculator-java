@@ -25,6 +25,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'plan'
+    workingDirectory: '$(codelab.microsoft.storageduvan'
     environmentServiceNameAzureRM: 'servicio_Duvan'
     
 - task: TerraformTaskV3@3
