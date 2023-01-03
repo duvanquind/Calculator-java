@@ -27,6 +27,7 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'AzureStorage'
     azureStorageAccountName: 'cristiancontainer'
+    azureCommonVirtualFile: '/usr/lib/jvm/temurin-17-jdk-amd64'
 
 - task: SonarCloudPrepare@1
   inputs:
