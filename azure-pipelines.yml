@@ -22,8 +22,8 @@ steps:
   inputs:
     script: | 
       java --version
-      echo JAVA_HOME
-      echo JAVA_HOME_17_X64
+      echo $JAVA_HOME
+      echo $JAVA_HOME_17_X64
 
 - task: JavaToolInstaller@0
   inputs:
