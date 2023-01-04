@@ -9,7 +9,7 @@ trigger:
 pool:
   name: agent-cristian-1
   vmImage: agent-test-1
-
+variables: test-env-agent
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
