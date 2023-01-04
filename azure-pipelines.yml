@@ -19,12 +19,13 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- script: |
-    java -version
-  env:
-    JAVA_HOME: $(JAVA_HOME_17_X64)
-    PATH: $(JAVA_HOME_17_X64)/bin:$(PATH)
-
+- task: CmdLine@2
+  displayName: "Use JDK11 by default"
+  inputs:
+    targetType: 'inline'
+    script: |
+      $jdkPath = $env:JAVA_HOME_17_X64
+      Write-Host "##vso[task.setvariable variable=JAVA_HOME]$jdkPath"
 - task: JavaToolInstaller@0
   inputs:
     versionSpec: '17'
