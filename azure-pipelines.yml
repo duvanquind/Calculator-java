@@ -7,8 +7,8 @@ trigger: none
 pool:
   name: agent-cristian-1
   vmImage: agent-test-1
-variables: 
-  - group: 'test-env-agent'
+variables:
+  - template: variables.yml
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
