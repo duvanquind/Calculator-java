@@ -18,12 +18,12 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
-- task: CmdLine@2
-  inputs:
-    script: | 
-      java --version
-      echo $JAVA_HOME
-      echo $JAVA_HOME_17_X64
+
+- script: |
+    java -version
+  env:
+    JAVA_HOME: $(JAVA_HOME_8_X64)
+    PATH: $(JAVA_HOME_8_X64)/bin:$(PATH)
 
 - task: JavaToolInstaller@0
   inputs:
