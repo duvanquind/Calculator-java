@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 @RestController
 
 public class controlador {
-    @RequestMapping(value = "/suma", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/cal/suma", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public resultado suma(@RequestParam(name = "op1", required = false, defaultValue = "0") String op1,
                           @RequestParam(name = "op2", required = false, defaultValue = "0") String op2) {
 
@@ -34,7 +34,7 @@ public class controlador {
         return exported;
     }
 
-    @RequestMapping(value = "/resta", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/cal/resta", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public resultado resta(@RequestParam(name = "op1", required = false, defaultValue = "0") String op1,
                            @RequestParam(name = "op2", required = false, defaultValue = "0") String op2) {
 
@@ -56,7 +56,7 @@ public class controlador {
         return exported;
     }
 
-    @RequestMapping(value = "/multiplicar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/cal/multiplicar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public resultado multiplicar(@RequestParam(name = "op1", required = false, defaultValue = "0") String op1,
                                  @RequestParam(name = "op2", required = false, defaultValue = "0") String op2) {
 
@@ -78,7 +78,7 @@ public class controlador {
         return exported;
     }
 
-    @RequestMapping(value = "/dividir", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/cal/dividir", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public resultado dividir(@RequestParam(name = "op1", required = false, defaultValue = "0") String op1,
                              @RequestParam(name = "op2", required = false, defaultValue = "0") String op2) {
 
