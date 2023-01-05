@@ -1,0 +1,4 @@
+variables:
+
+  JAVA_HOME           : '/usr/lib/jvm/temurin-11-jdk-amd64'
+  JAVA_HOME_17_X64    : '/usr/lib/jvm/temurin-17-jdk-amd64'

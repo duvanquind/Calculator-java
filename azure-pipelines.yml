@@ -1,0 +1,70 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+pool:
+  name: agent-cristian-1
+  vmImage: agent-test-1
+variables:
+  - template: variables.yml
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+# - task: Bash@3
+#   displayName: "Workaround: Set environment variables manually"
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       cd ~
+#       echo "##vso[task.setvariable variable=HOME]$(pwd)"
+#       echo "##vso[task.setvariable variable=USER]$(whoami)"
+#       echo "##vso[task.setvariable variable=JAVA_HOME_17_X64]/usr/lib/jvm/temurin-17-jdk-amd64"
+
+
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: $(JAVA_VERSION)
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonar_Duvan_Code'
+    organization: 'quind'
+    scannerMode: 'Other'
+
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: true
+    sqGradlePluginVersionChoice: 'build'
+    spotBugsAnalysis: false
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+- task: sonarcloud-buildbreaker@2
+  inputs:
+    SonarCloud: 'Sonar_Duvan_Code'
+    organization: 'quind'
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/*.jar'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'build/libs/'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
