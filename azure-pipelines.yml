@@ -31,7 +31,7 @@ steps:
 
 - task: JavaToolInstaller@0
   inputs:
-    versionSpec: $(JAVA_VERSION)
+    versionSpec: '17'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
