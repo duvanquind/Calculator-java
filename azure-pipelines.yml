@@ -35,6 +35,7 @@ steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
+    exho $(Build.Repository.Name)
     echo $(Build.DefinitionName)
     echo $(sonar.project.key)
   displayName: 'Run a multi-line script'
