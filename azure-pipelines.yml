@@ -31,15 +31,15 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    # echo Add other tasks to build, test, and deploy your project.
-    # echo See https://aka.ms/yaml
-    # echo $(Build.DefinitionName)
-    # echo $(sonar.project.key)
-    # echo dev:$(Build.BuildNumber):$(Build.Repository.Name)
-    # echo $(System.CollectionUri)$projectNameRepo/_apis/git/repositories/$(Build.Repository.Name)/refs?api-version=5.1
-    # echo hola
-    # echo $(jq -r '.value | .[] | .name' tags.json )
-    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+    echo $(Build.DefinitionName)
+    echo $(sonar.project.key)
+    echo dev:$(Build.BuildNumber):$(Build.Repository.Name)
+    echo $(System.CollectionUri)$projectNameRepo/_apis/git/repositories/$(Build.Repository.Name)/refs?api-version=5.1
+    echo hola
+    echo $(jq -r '.value | .[] | .name' tags.json )
+#    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
 
 # - task: Bash@3
