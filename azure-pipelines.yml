@@ -42,6 +42,7 @@ steps:
     # echo $(jq -r '.value | .[] | .name' tags.json )
     # echo $(CodeCoverageFile)
     echo $(text)
+    echo $(Build.DefinitionName) 
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
 
