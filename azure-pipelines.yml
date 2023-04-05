@@ -46,7 +46,7 @@ steps:
     echo $(Build.DefinitionName) 
     echo holaaaaaaaa
     echo  $(Agent.BuildDirectory)
-    echo $(System.DefaultWorkingDirectory)/terraform
+    echo $(System.DefaultWorkingDirectory)/teaform
     echo $(namespace)
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
