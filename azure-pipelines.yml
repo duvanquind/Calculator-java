@@ -45,7 +45,7 @@ steps:
     echo $(text)
     echo $(Build.DefinitionName) 
     echo holaaaaaaaa
-    echo  $(Agent.BuildDirectory)
+    echo  $(Build.Repository.LocalPath)
     tree $(System.DefaultWorkingDirectory)/terraform
     echo $(namespace)
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
