@@ -41,7 +41,7 @@ steps:
     # echo hola
     # echo $(jq -r '.value | .[] | .name' tags.json )
     # echo $(CodeCoverageFile)
-    echo tree
+    tree
     echo $(text)
     echo $(Build.DefinitionName) 
     echo holaaaaaaaa
