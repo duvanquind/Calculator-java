@@ -30,7 +30,7 @@ variables:
 steps:
 - script: |
    echo ${{lower(variables['Build.Repository.Name'])}}
-   echo $(stage)
+   echo $(Build.Repository.Name)
     # echo dev:$(Build.BuildNumber):$(Build.Repository.Name)
     echo $(System.CollectionUri)$projectNameRepo/_apis/git/repositories/$(Build.Repository.Name)/refs?api-version=5.1
     # echo hola
