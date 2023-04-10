@@ -32,10 +32,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    # echo Add other tasks to build, test, and deploy your project.
-    # echo See https://aka.ms/yaml
-    # echo $(Build.DefinitionName)
-    # echo $(sonar.project.key)
+   echo ${{lower(variables['Build.Repository.Name'])}}
     # echo dev:$(Build.BuildNumber):$(Build.Repository.Name)
     echo $(System.CollectionUri)$projectNameRepo/_apis/git/repositories/$(Build.Repository.Name)/refs?api-version=5.1
     # echo hola
