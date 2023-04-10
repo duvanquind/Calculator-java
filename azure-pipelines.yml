@@ -28,9 +28,6 @@ variables:
 
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
    echo ${{lower(variables['Build.Repository.Name'])}}
     # echo dev:$(Build.BuildNumber):$(Build.Repository.Name)
