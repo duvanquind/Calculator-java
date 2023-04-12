@@ -31,6 +31,7 @@ steps:
 - script: |
    echo ${{lower(variables['Build.Repository.Name'])}}
    echo $(Build.Repository.Name)
+   echo $(Build.BuildNumber)
    echo $(Build.DefinitionName)
    echo ${{ parameters.resources}}
     # echo dev:$(Build.BuildNumber):$(Build.Repository.Name)
