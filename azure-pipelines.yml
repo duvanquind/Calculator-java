@@ -34,7 +34,6 @@ steps:
    echo $(Build.Repository.Name)
    echo $(Build.BuildNumber)
    echo $(Build.DefinitionName)
-   echo ${{ parameters.resources}}
     # echo dev:$(Build.BuildNumber):$(Build.Repository.Name)
     echo $(System.CollectionUri)$projectNameRepo/_apis/git/repositories/$(Build.Repository.Name)/refs?api-version=5.1
     # echo hola
