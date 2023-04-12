@@ -29,6 +29,7 @@ variables:
 
 steps:
 - script: |
+
    echo ${{lower(variables['Build.Repository.Name'])}}
    echo $(Build.Repository.Name)
    echo $(Build.BuildNumber)
