@@ -46,7 +46,7 @@ steps:
     echo  $(Build.Repository.LocalPath)
     tree $(System.DefaultWorkingDirectory)/terraform
     echo $(namespace)
-    cat $(System.DefaultWorkingDirectory)/quind/Dockerfile
+    cat 'https://dev.azure.com/quind/training-quind/_git/Duvan_Training?path=/Dockerfile'
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
 
