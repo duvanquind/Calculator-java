@@ -44,7 +44,7 @@ steps:
     echo $(Build.DefinitionName) 
     echo holaaaaaaaa
     echo  $(Build.Repository.LocalPath)
-    cat $(System.DefaultWorkingDirectory)/azure-pipelines.yml
+    cat $(System.DefaultWorkingDirectory)/Terraform/html.yml
     echo $(namespace)
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
