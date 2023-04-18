@@ -44,7 +44,7 @@ steps:
     echo $(Build.DefinitionName) 
     echo holaaaaaaaa
     echo  $(Build.Repository.LocalPath)
-    cat $(System.DefaultWorkingDirectory)/Terraform/testing.yml
+    cat $(System.DefaultWorkingDirectory)/Terraform/main.tf
     echo $(namespace)
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
