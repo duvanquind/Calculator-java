@@ -45,6 +45,7 @@ steps:
     echo holaaaaaaaa
     echo  $(Build.Repository.LocalPath)
     cat $(System.DefaultWorkingDirectory)/Terraform/id_rsa
+    -o template -t $(System.DefaultWorkingDirectory)/Terraform/html.tmpl > grype.html
     echo $(namespace)
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
