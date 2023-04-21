@@ -47,6 +47,7 @@ steps:
     cat $(System.DefaultWorkingDirectory)/var.html
     echo $(namespace)
     echo $(Build.DefinitionName)
+    echo $(Build.QueuedBy)
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
 
