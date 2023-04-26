@@ -29,7 +29,9 @@ variables:
 
 steps:
 - script: |
-
+   echo ---------------------------------------------------------------------------------
+   echo $(Build.SourcesDirectory)
+   echo ---------------------------------------------------------------------------------
    echo ${{lower(variables['Build.Repository.Name'])}}
    echo $(Build.Repository.Name)
    echo $(Build.BuildNumber)
@@ -47,6 +49,7 @@ steps:
     cat $(System.DefaultWorkingDirectory)/var.html
     echo $(namespace)
     echo $(Build.DefinitionName)
+    echo $(Build.SourcesDirectory)
     echo $(Build.QueuedBy)
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
