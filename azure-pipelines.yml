@@ -30,7 +30,7 @@ variables:
 steps:
 - script: |
    echo ---------------------------------------------------------------------------------
-   echo $(Build.SourcesDirectory)
+   echo $(Build.SourcesDirectory):/app
    echo ---------------------------------------------------------------------------------
    echo ${{lower(variables['Build.Repository.Name'])}}
    echo $(Build.Repository.Name)
