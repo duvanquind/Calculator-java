@@ -29,6 +29,7 @@ variables:
 
 steps:
 - script: |
+   echo tree
    echo ---------------------------------------------------------------------------------
    echo $(Build.SourcesDirectory):/app
    echo $(Build.ArtifactStagingDirectory)
