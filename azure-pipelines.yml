@@ -37,6 +37,7 @@ steps:
    echo ${{lower(variables['Build.Repository.Name'])}}
    echo $(Build.Repository.Name)
    echo $(Build.BuildNumber)
+   echo hollllllllllllllllllllllllllll
    echo $(Build.DefinitionName)
     # echo dev:$(Build.BuildNumber):$(Build.Repository.Name)
     echo $(System.CollectionUri)$projectNameRepo/_apis/git/repositories/$(Build.Repository.Name)/refs?api-version=5.1
