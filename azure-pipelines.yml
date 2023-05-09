@@ -29,6 +29,7 @@ variables:
 
 steps:
 - script: |
+   exho $(System.ArtifactsDirectory)
    echo tree
    echo ---------------------------------------------------------------------------------
    echo $(Build.SourcesDirectory):/app
