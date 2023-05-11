@@ -29,7 +29,7 @@ variables:
 
 steps:
 - script: |
-   echo $(Build.BuildNumber)
+   echo $(system.defaultWorkingDirectory)
    echo $(Build.BuildId)
    echo $(System.ArtifactsDirectory)
    echo tree
