@@ -59,6 +59,9 @@ steps:
     echo $(Build.QueuedBy)
 #    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
   displayName: 'Run a multi-line script'
+- task: Npm@1
+  inputs:
+    command: 'install'
 
 # - task: Bash@3
 #   displayName: "Workaround: Set environment variables manually"
