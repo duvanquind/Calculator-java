@@ -28,7 +28,9 @@ variables:
 
 
 steps:
+
 - script: |
+   echo $(buildConfiguration)
    node --version
    dotnet --version
    java --version
