@@ -29,6 +29,8 @@ variables:
 
 steps:
 - script: |
+   node --version
+   java --version
    echo $(system.defaultWorkingDirectory)
    echo $(Build.BuildId)
    echo $(System.ArtifactsDirectory)
