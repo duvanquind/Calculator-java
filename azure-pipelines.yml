@@ -30,6 +30,7 @@ variables:
 steps:
 - script: |
    node --version
+   netcore --version
    java --version
    echo $(system.defaultWorkingDirectory)
    echo $(Build.BuildId)
