@@ -30,8 +30,7 @@ variables:
 steps:
 
 - script: |
-   echo $(buildConfiguration)
-   maven --version
+   mvn --version
    node --version
    dotnet --version
    java --version
