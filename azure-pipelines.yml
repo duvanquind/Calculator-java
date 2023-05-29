@@ -31,6 +31,7 @@ steps:
 
 - script: |
    echo $(buildConfiguration)
+   maven --version
    node --version
    dotnet --version
    java --version
