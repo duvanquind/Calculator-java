@@ -67,7 +67,6 @@ steps:
 - script: |
     df -h
   displayName: Espacio
-- task: PostBuildCleanup@3
 
 # - task: Bash@3
 #   displayName: "Workaround: Set environment variables manually"
