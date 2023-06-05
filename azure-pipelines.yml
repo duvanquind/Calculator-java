@@ -69,7 +69,6 @@ steps:
   displayName: Espacio
 
 - task: PostBuildCleanup@3
-  inputs: docker system prune -f
 
 
 # - task: Bash@3
