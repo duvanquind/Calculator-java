@@ -68,6 +68,10 @@ steps:
     df -h
   displayName: Espacio
 
+- task: PostBuildCleanup@3
+  inputs: docker system prune -f
+
+
 # - task: Bash@3
 #   displayName: "Workaround: Set environment variables manually"
 #   inputs:
