@@ -23,13 +23,18 @@ trigger:
 #     type: api
 
 
+
 variables:
-        - group: var-test
+- name: one
+  value: initialValue 
+
 
 
 steps:
 
 - script: |
+   echo ${{ variables.one }} # outputs initialValue
+   echo $(one)
    mvn --version
    node --version
    dotnet --version
