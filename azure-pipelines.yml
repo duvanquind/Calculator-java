@@ -33,6 +33,7 @@ variables:
 steps:
 
 - script: |
+   jq --version
    echo $(Build.ArtifactStagingDirectory)
    echo ${{ variables.one }} # outputs initialValue
    echo $(one)
