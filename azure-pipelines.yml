@@ -1,130 +1,53 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- none
+- master
 
-# resources:
-#   repositories:
-#     - repository: templates
-#       name: training-quind/pipeline-templates
-#       type: git
-
-# variables:
-#   - group: variables-prueba-cristian
-
-# extends:
-#   template: pipeline/main.yml@templates
-#   parameters:
-#     language: java
-#     build: gradle
-#     type: api
-
-
-
-variables:
-- name: one
-  value: initialValue 
-
-
+pool:
+  vmImage: ubuntu-latest
 
 steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
 
 - script: |
-   jq --version
-   echo $(Build.ArtifactStagingDirectory)
-   echo ${{ variables.one }} # outputs initialValue
-   echo $(one)
-   mvn --version
-   node --version
-   dotnet --version
-   java --version
-   echo $(system.defaultWorkingDirectory)
-   echo $(Build.BuildId)
-   echo $(System.ArtifactsDirectory)
-   echo tree
-   echo ---------------------------------------------------------------------------------
-   echo $(Build.SourcesDirectory):/app
-   echo $(Build.ArtifactStagingDirectory)
-   echo ---------------------------------------------------------------------------------
-   echo ${{lower(variables['Build.Repository.Name'])}}
-   echo $(Build.Repository.Name)
-   echo $(Build.BuildNumber)
-   echo hollllllllllllllllllllllllllll
-   echo $(Build.DefinitionName)
-    # echo dev:$(Build.BuildNumber):$(Build.Repository.Name)
-    echo $(System.CollectionUri)$projectNameRepo/_apis/git/repositories/$(Build.Repository.Name)/refs?api-version=5.1
-    # echo hola
-    # echo $(jq -r '.value | .[] | .name' tags.json )
-    # echo $(CodeCoverageFile)
-    tree
-    echo $(text)
-    echo $(Build.DefinitionName) 
-    echo holaaaaaaaa
-    echo  $(Build.Repository.LocalPath)
-    cat $(System.DefaultWorkingDirectory)/var.html
-    echo $(namespace)
-    echo $(Build.DefinitionName)
-    echo $(Build.SourcesDirectory)
-    echo $(Build.QueuedBy)
-#    curl "https://sonarqube.presente.com.co/quality_gates/show/AYbbX4Xn-Jqfe6SsA02o"
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
-- script: |
-    df -h
-  displayName: Espacio
 
-- task: PostBuildCleanup@3
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '17'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonar_Duvan'
+    organization: 'quind'
+    scannerMode: 'Other'
 
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: true
+    sqGradlePluginVersionChoice: 'build'
+    spotBugsAnalysis: false
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+- task: sonarcloud-buildbreaker@2
+  inputs:
+    SonarCloud: 'Sonar_Duvan'
+    organization: 'quind'
 
-# - task: Bash@3
-#   displayName: "Workaround: Set environment variables manually"
-#   inputs:
-#     targetType: 'inline'
-#     script: |
-#       cd ~
-#       echo "##vso[task.setvariable variable=HOME]$(pwd)"
-#       echo "##vso[task.setvariable variable=USER]$(whoami)"
-#       echo "##vso[task.setvariable variable=JAVA_HOME_17_X64]/usr/lib/jvm/temurin-17-jdk-amd64"
-
-
-# - task: JavaToolInstaller@0
-#   inputs:
-#     versionSpec: '17'
-#     jdkArchitectureOption: 'x64'
-#     jdkSourceOption: 'PreInstalled'
-
-
-# - task: SonarCloudPrepare@1
-#   inputs:
-#     SonarCloud: 'Sonar_Duvan_Code'
-#     organization: 'quind'
-#     scannerMode: 'Other'
-
-# - task: Gradle@3
-#   inputs:
-#     gradleWrapperFile: 'gradlew'
-#     tasks: 'build'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/TEST-*.xml'
-#     javaHomeOption: 'JDKVersion'
-#     sonarQubeRunAnalysis: true
-#     sqGradlePluginVersionChoice: 'build'
-#     spotBugsAnalysis: false
-# - task: SonarCloudPublish@1
-#   inputs:
-#     pollingTimeoutSec: '300'
-# - task: sonarcloud-buildbreaker@2
-#   inputs:
-#     SonarCloud: 'Sonar_Duvan_Code'
-#     organization: 'quind'
-# - task: CopyFiles@2
-#   inputs:
-#     Contents: '**/*.jar'
-#     TargetFolder: '$(build.artifactstagingdirectory)'
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: 'build/libs/'
-#     ArtifactName: 'drop'
-#     publishLocation: 'Container'
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/*.jar'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'build/libs/'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
