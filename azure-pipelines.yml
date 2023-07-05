@@ -2,8 +2,8 @@ trigger:
 - none
 
 pool:
-  name: agent-duvan
-  vmImage: agent-vm
+#  name: agent-duvan
+  vmImage: ubunt-lastes
 
 steps:
 - script: echo Hello, world!
