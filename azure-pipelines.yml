@@ -3,7 +3,7 @@ trigger:
 
 pool:
 #  name: agent-duvan
-  vmImage: ubunt-lastes
+  vmImage: ubuntu-lastes
 
 steps:
 - script: echo Hello, world!
