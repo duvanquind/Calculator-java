@@ -8,7 +8,7 @@ resources:
 
 
 extends:
-  template: pipeline/mai.yml@templates
+  template: pipeline/main.yml@templates
   parameters:
       language: java
       type: api
