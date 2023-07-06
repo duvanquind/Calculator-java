@@ -3,7 +3,7 @@ trigger:
 resources:
   repositories:
   - repository: templates
-    name: Demo%20DevSecOps/template-pipelines
+    name: DemoDevSecOps/template-pipelines
     type: git
 
 
