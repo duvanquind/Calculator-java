@@ -11,6 +11,7 @@ extends:
   template: pipeline/main.yml@templates
   parameters:
       language: java
+      build: gradle
       type: api
 
 
