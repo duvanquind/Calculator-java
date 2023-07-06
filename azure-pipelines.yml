@@ -13,4 +13,3 @@ extends:
       language: java
       build: gradle
       type: api
-      type:
