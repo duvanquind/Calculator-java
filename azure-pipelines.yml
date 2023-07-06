@@ -1,53 +1,69 @@
 trigger:
-- none
+  - none
+resources:
+  repositories:
+  - repository: templates
+    name: Demo DevSecOps/template-pipelines
+    type: git
 
-pool:
-  vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+extends:
+  template: main.yml@templates
+  parameters:
+      language: java
+      type: api
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '17'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'Sonar_Duvan'
-    organization: 'quind'
-    scannerMode: 'Other'
+# trigger:
+# - none
 
-- task: Gradle@3
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'build'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'build'
-    spotBugsAnalysis: false
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
-- task: sonarcloud-buildbreaker@2
-  inputs:
-    SonarCloud: 'Sonar_Duvan'
-    organization: 'quind'
+# pool:
+#   vmImage: ubuntu-latest
 
-- task: CopyFiles@2
-  inputs:
-    Contents: '**/*.jar'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'build/libs/'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
+
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#   displayName: 'Run a multi-line script'
+
+# - task: JavaToolInstaller@0
+#   inputs:
+#     versionSpec: '17'
+#     jdkArchitectureOption: 'x64'
+#     jdkSourceOption: 'PreInstalled'
+# - task: SonarCloudPrepare@1
+#   inputs:
+#     SonarCloud: 'Sonar_Duvan'
+#     organization: 'quind'
+#     scannerMode: 'Other'
+
+# - task: Gradle@3
+#   inputs:
+#     gradleWrapperFile: 'gradlew'
+#     tasks: 'build'
+#     publishJUnitResults: true
+#     testResultsFiles: '**/TEST-*.xml'
+#     javaHomeOption: 'JDKVersion'
+#     sonarQubeRunAnalysis: true
+#     sqGradlePluginVersionChoice: 'build'
+#     spotBugsAnalysis: false
+# - task: SonarCloudPublish@1
+#   inputs:
+#     pollingTimeoutSec: '300'
+# - task: sonarcloud-buildbreaker@2
+#   inputs:
+#     SonarCloud: 'Sonar_Duvan'
+#     organization: 'quind'
+
+# - task: CopyFiles@2
+#   inputs:
+#     Contents: '**/*.jar'
+#     TargetFolder: '$(build.artifactstagingdirectory)'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: 'build/libs/'
+#     ArtifactName: 'drop'
+#     publishLocation: 'Container'
