@@ -3,12 +3,12 @@ trigger:
 resources:
   repositories:
   - repository: templates
-    name: backend-calculadore-Angelica
+    name: Demo DevSecOps/template-pipelines
     type: git
 
 
 extends:
-  template: azure-pipelines.yml
+  template: pipeline/main.yml@templates
   parameters:
       language: java
       type: api
