@@ -2,7 +2,6 @@ trigger:
 - none
 
 pool:
-#  name: agent-duvan
   vmImage: ubuntu-latest
 
 steps:
