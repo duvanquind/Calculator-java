@@ -7,11 +7,11 @@ resources:
     type: git
 
 
-# extends:
-#   template: pipeline/main.yml@templates
-#   parameters:
-#       language: java
-#       type: api
+extends:
+  template: pipeline/main.yml@templates
+  parameters:
+      language: java
+      type: api
 
 
 # trigger:
