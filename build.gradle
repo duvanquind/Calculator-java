@@ -20,11 +20,15 @@ dependencies {
 }
 
 
-sonarqube {
+plugins {
+  id "org.sonarqube" version "4.2.1.3168"
+}
+
+sonar {
   properties {
     property "sonar.projectKey", "quind_demo"
     property "sonar.organization", "quind"
-    property "sonar.host.url", "https://sonarcloud.io"
+    property "sonar.host", "https://sonarcloud.io"
   }
 }
 jacoco {
