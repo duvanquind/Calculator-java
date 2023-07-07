@@ -31,6 +31,7 @@ sonar {
     property "sonar.host", "https://sonarcloud.io"
   }
 }
+
 jacoco {
     toolVersion = "0.8.7"
 }
