@@ -22,7 +22,7 @@ dependencies {
 
 sonarqube {
   properties {
-    property "sonar.projectKey", "demo"
+    property "sonar.projectKey", "quind_demo"
     property "sonar.organization", "quind"
     property "sonar.host.url", "https://sonarcloud.io"
   }
