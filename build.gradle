@@ -19,7 +19,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-sonar {
+sonarqube {
   properties {
     property "sonar.projectKey", "quind_demo"
     property "sonar.organization", "quind"
