@@ -1,0 +1,4 @@
+deploy:
+  namespace: #{namespace}#
+  acrName: #{acrName}#
+  secretName: #{secretName}#

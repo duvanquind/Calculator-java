@@ -1,7 +1,7 @@
 provider "azurerm" {
   subscription_id            = "#{spSubscriptionId}#"
   client_id                  = "#{spId}#"
-  client_secret              = "#{spSecret}#"
+  client_secret              = "#{spPassword}#"
   tenant_id                  = "#{spTenantId}#"
   skip_provider_registration = true
   features {}

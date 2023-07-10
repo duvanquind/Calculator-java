@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}
+  namespace: {{.Values.deploy.namespace}}
+spec:
+  selector:
+    matchLabels:
+      app: {{.Release.Name}}
+  replicas: 1
+  template:
+    metadata:
+      annotations: 
+        buildNumber: {{.Values.deploy.build | quote}}
+      labels:
+        app: {{.Release.Name}}
+    spec:
+      containers:
+      - name: {{.Release.Name}}
+        image:  "{{.Values.deploy.acrName}}/{{.Release.Name}}:{{.Values.deploy.imageTag}}"
+        ports:
+          - name: http
+            containerPort: 8080   
+        imagePullPolicy: Always    
+      imagePullSecrets:
+        - name: {{.Values.deploy.secretName}}
