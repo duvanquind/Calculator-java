@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: {{.Values.deploy.name}}
-        image:  "{{.Values.deploy.acrName}}/{{.Values.deploy.name}}:{{.Values.deploy.imageTag}}"
+        image:  "{{.Values.deploy.acrServer}}/{{.Values.deploy.name}}:{{.Values.deploy.imageTag}}"
         ports:
           - name: http
             containerPort: 8080   
