@@ -18,3 +18,5 @@ parameters:
 
 extends:
   template: pipeline/main.yml@templates
+  parameters:
+    app: ${{ parameters.app }}
