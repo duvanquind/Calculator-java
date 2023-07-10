@@ -57,9 +57,16 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.k8s.kube_config.0.cluster_ca_certificate)
 }
 
-resource "kubernetes_namespace" "example" {
+resource "kubernetes_namespace" "qa-namespace" {
   depends_on = [azurerm_kubernetes_cluster.k8s]
   metadata {
-    name = "#{namespace}#"
+    name = "qa-#{namespace}#"
+  }
+}
+
+resource "kubernetes_namespace" "pdn-namespace" {
+  depends_on = [azurerm_kubernetes_cluster.k8s]
+  metadata {
+    name = "pdn-#{namespace}#"
   }
 }
