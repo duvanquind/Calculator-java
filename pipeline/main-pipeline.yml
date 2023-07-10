@@ -5,7 +5,7 @@ resources:
   - repository: templates
     name: template-pipeline
     type: git
-#    ref: feature/demo
+    ref: master
 
 parameters: 
 - name: app
