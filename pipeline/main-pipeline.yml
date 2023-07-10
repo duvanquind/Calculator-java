@@ -1,0 +1,14 @@
+trigger: none
+
+resources:
+  repositories:
+  - repository: templates
+    name: template-pipeline
+    type: git
+
+variables:
+- group: calculator-java-gradle
+- group: azure-portal-service-principal
+
+extends:
+  template: pipeline/main.yml@templates

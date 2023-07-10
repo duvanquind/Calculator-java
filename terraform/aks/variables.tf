@@ -10,7 +10,7 @@ variable "client_id" {
   default = "#{spId}#"
 }
 variable "client_secret" {
-  default = "#{spSecret}#"
+  default = "#{spSPassword}#"
 }
 
 variable "agent_count" {
