@@ -78,8 +78,8 @@ resource "kubernetes_resource_quota" "qa-resource-quota" {
 
   spec {
     hard = {
-      "limits.cpu"    = "600m"  # Límite de CPU en 200 milicores
-      "requests.cpu"  = "600m"  # Solicitud de CPU en 100 milicores
+      "limits.cpu"    = "6000m"  # Límite de CPU en 200 milicores
+      "requests.cpu"  = "6000m"  # Solicitud de CPU en 100 milicores
     }
   }
 }
