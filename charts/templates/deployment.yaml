@@ -27,8 +27,8 @@ spec:
         - name: {{.Values.deploy.secretName}}
       resources:
         limits:
-          memory: "10Gi"
+          memory: "1Gi"
           cpu: "6"
         requests:
-          memory: "1Gi"
+          memory: "500mi"
           cpu: "3"
