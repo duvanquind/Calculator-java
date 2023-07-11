@@ -24,10 +24,10 @@ spec:
         imagePullPolicy: Always    
       imagePullSecrets:
         - name: {{.Values.deploy.secretName}}
-        resources:
-          limits:
-            memory: "460Mi"
-            cpu: "460m"
-          requests:
-            memory: "460Mi"
-            cpu: "460m"
+      resources:
+        limits:
+          memory: "460Mi"
+          cpu: "460m"
+        requests:
+          memory: "460Mi"
+          cpu: "460m"
