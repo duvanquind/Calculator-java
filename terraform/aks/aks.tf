@@ -1,72 +1,55 @@
-provider "azurerm" {
-  subscription_id            = "#{spSubscriptionId}#"
-  client_id                  = "#{spId}#"
-  client_secret              = "#{spPassword}#"
-  tenant_id                  = "#{spTenantId}#"
-  skip_provider_registration = true
-  features {}
-}
+resource "kubernetes_deployment" "example" {
+  metadata {
+    name      = "{{.Values.deploy.name}}"
+    namespace = "{{.Values.deploy.namespace}}"
+  }
 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 2.21.0"
+  spec {
+    selector {
+      match_labels = {
+        app = "{{.Values.deploy.name}}"
+      }
     }
-  }
-  # Blob storage account. Authenticating using service principal
-  backend "azurerm" {
-    resource_group_name  = "#{resourceGroup}#"
-    storage_account_name = "#{storageAccountName}#"
-    container_name       = "#{storageContainerNameAks}#"
-    key                  = "#{storageKey}#"
-  }
-}
 
-resource "azurerm_kubernetes_cluster" "k8s" {
-  name                = var.cluster_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  dns_prefix          = var.dns_prefix
+    replicas = 1
 
-  default_node_pool {
-    name       = "agentpool"
-    node_count = var.agent_count
-    vm_size    = "Standard_D2_v2"
-  }
+    template {
+      metadata {
+        annotations = {
+          buildNumber = "{{.Values.deploy.build | quote}}"
+        }
 
-  service_principal {
-    client_id     = var.client_id
-    client_secret = var.client_secret
-  }
+        labels = {
+          app = "{{.Values.deploy.name}}"
+        }
+      }
 
-  network_profile {
-    load_balancer_sku = "Standard"
-    network_plugin    = "kubenet"
-  }
+      spec {
+        containers {
+          name  = "{{.Values.deploy.name}}"
+          image = "{{.Values.deploy.acrServer}}/{{.Values.deploy.name}}:{{.Values.deploy.imageTag}}"
 
-  tags = {
-    Environment = "Development"
-  }
-}
+          ports {
+            name          = "http"
+            container_port = 8080
+          }
 
-provider "kubernetes" {
-  host                   = azurerm_kubernetes_cluster.k8s.kube_config.0.host
-  client_certificate     = base64decode(azurerm_kubernetes_cluster.k8s.kube_config.0.client_certificate)
-  client_key             = base64decode(azurerm_kubernetes_cluster.k8s.kube_config.0.client_key)
-  cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.k8s.kube_config.0.cluster_ca_certificate)
-}
-
-resource "kubernetes_namespace" "qa-namespace" {
-  depends_on = [azurerm_kubernetes_cluster.k8s]
-  metadata {
-    name = "qa-#{namespace}#"
-  }
-}
-
-resource "kubernetes_namespace" "pdn-namespace" {
-  depends_on = [azurerm_kubernetes_cluster.k8s]
-  metadata {
-    name = "pdn-#{namespace}#"
+          resources {
+            limits {
+              memory = "460Mi"
+              cpu    = "460m"
+            }
+            requests {
+              memory = "460Mi"
+              cpu    = "460m"
+            }
+          }
+        }
+        
+        image_pull_secrets {
+          name = "{{.Values.deploy.secretName}}"
+        }
+      }
+    }
   }
 }
