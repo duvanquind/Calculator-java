@@ -10,19 +10,19 @@ spec:
   replicas: 1
   template:
     metadata:
-      annotations:
+      annotations: 
         buildNumber: {{.Values.deploy.build | quote}}
       labels:
         app: {{.Values.deploy.name}}
     spec:
       containers:
       - name: {{.Values.deploy.name}}
-        image: "{{.Values.deploy.acrServer}}/{{.Values.deploy.name}}:{{.Values.deploy.imageTag}}"
+        image:  "{{.Values.deploy.acrServer}}/{{.Values.deploy.name}}:{{.Values.deploy.imageTag}}"
         ports:
-        - name: http
-          containerPort: 8080
-        imagePullPolicy: Always
-        imagePullSecrets:
+          - name: http
+            containerPort: 8080   
+        imagePullPolicy: Always    
+      imagePullSecrets:
         - name: {{.Values.deploy.secretName}}
         resources:
           limits:
