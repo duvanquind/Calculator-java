@@ -63,20 +63,6 @@ resource "kubernetes_namespace" "qa-namespace" {
     name = "qa-#{namespace}#"
   }
 }
-resource "kubernetes_resource_quota" "qa-resource-quota" {
-  metadata {
-    name      = "qa-demo-resource-quota"
-    namespace = kubernetes_namespace.qa-namespace.metadata[0].name
-  }
-
-  spec {
-    hard = {
-      "limits.cpu"    = "600m"  # Límite de CPU en 200 milicores
-      "requests.cpu"  = "600m"  # Solicitud de CPU en 100 milicores
-    }
-  }
-}
-
 
 resource "kubernetes_namespace" "pdn-namespace" {
   depends_on = [azurerm_kubernetes_cluster.k8s]
