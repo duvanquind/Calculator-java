@@ -25,6 +25,9 @@ spec:
       imagePullSecrets:
         - name: {{.Values.deploy.secretName}}
         resources:
-          requests:
-            memory: 460Mi
-            cpu: 460m
+            limits:
+              cpu: "460m"
+              memory: "460Mi"
+            requests:
+              cpu: "460m"
+              memory: "460Mi"
