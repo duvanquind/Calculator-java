@@ -24,3 +24,7 @@ spec:
         imagePullPolicy: Always    
       imagePullSecrets:
         - name: {{.Values.deploy.secretName}}
+        resources:
+          requests:
+            memory: 460Mi
+            cpu: 460m
