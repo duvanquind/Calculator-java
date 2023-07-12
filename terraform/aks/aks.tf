@@ -78,8 +78,8 @@ resource "kubernetes_resource_quota" "qa-resource-quota" {
 
   spec {
     hard = {
-      "limits.cpu"    = "2000m" 
-      "requests.cpu"  = "1000m"  
+      "limits.cpu"    = "2000M" 
+      "requests.cpu"  = "1000M"  
     }
   }
 }
