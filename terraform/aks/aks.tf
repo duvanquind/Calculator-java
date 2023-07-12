@@ -76,12 +76,12 @@ resource "kubernetes_resource_quota" "qa-resource-quota" {
     namespace = kubernetes_namespace.qa-namespace.metadata[0].name
   }
 
-  // spec {
-  //   hard = {
-  //     "limits.cpu"    = "20G" 
-  //     "requests.cpu"  = "10G"  
-  //   }
-  // }
+  spec {
+    hard = {
+      "limits.cpu"    = "20G" 
+      "requests.cpu"  = "10G"  
+    }
+  }
 }
 // provider "azurerm" {
 //   subscription_id            = "#{spSubscriptionId}#"
