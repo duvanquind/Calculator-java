@@ -62,20 +62,6 @@ resource "kubernetes_namespace" "qa-namespace" {
   metadata {
     name = "qa-#{namespace}#"
   }
-}
-
-resource "kubernetes_namespace" "pdn-namespace" {
-  depends_on = [azurerm_kubernetes_cluster.k8s]
-  metadata {
-    name = "pdn-#{namespace}#"
-  }
-}
-resource "kubernetes_resource_quota" "qa-resource-quota" {
-  metadata {
-    name      = "qa-demo-resource-quota"
-    namespace = kubernetes_namespace.qa-namespace.metadata[0].name
-  }
-
   spec {
     hard = {
       "limits.cpu"    = "1" 
@@ -85,6 +71,29 @@ resource "kubernetes_resource_quota" "qa-resource-quota" {
     }
   }
 }
+
+resource "kubernetes_namespace" "pdn-namespace" {
+  depends_on = [azurerm_kubernetes_cluster.k8s]
+  metadata {
+    name = "pdn-#{namespace}#"
+  }
+  spec {
+    hard = {
+      "limits.cpu"    = "1" 
+      "requests.cpu"  = "460m"  
+      "limits.memory" = "2Gi"
+      "requests.memory"= "460Mi"
+    }
+  }
+}
+// resource "kubernetes_resource_quota" "qa-resource-quota" {
+//   metadata {
+//     name      = "qa-demo-resource-quota"
+//     namespace = kubernetes_namespace.qa-namespace.metadata[0].name
+//   }
+
+
+// }
 // provider "azurerm" {
 //   subscription_id            = "#{spSubscriptionId}#"
 //   client_id                  = "#{spId}#"
