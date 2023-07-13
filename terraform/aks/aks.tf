@@ -70,9 +70,9 @@ resource "kubernetes_namespace" "pdn-namespace" {
     name = "pdn-#{namespace}#"
   }
 }
-resource "kubernetes_resource_quota" "qa-namespace" {
+resource "kubernetes_resource_quota" "qa-resource-quota" {
   metadata {
-    name      = "qa-#{namespace}#"
+    name      = "qa-demo-resource-quota"
     namespace = kubernetes_namespace.qa-namespace.metadata[0].name
   }
 
