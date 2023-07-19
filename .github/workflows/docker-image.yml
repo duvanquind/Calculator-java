@@ -8,11 +8,8 @@ on:
 
 jobs:
 
-  build:
-
-    runs-on: ubuntu-latest
-
+  hello_world:
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: imprime hola
+        run: echo "hola mundo"
