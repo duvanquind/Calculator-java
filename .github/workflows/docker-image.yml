@@ -18,11 +18,6 @@ jobs:
         with:
           java-version: '17'
 
-      - name: Replace Tokens VersionController
-        uses: actions/replace@v2
-        with:
-          files: '**/*.java'
-
       - name: SonarCloud Prepare
         uses: SonarSource/sonarcloud-github-action@master
         with:
