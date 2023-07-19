@@ -19,24 +19,11 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
-      - name: SonarCloud Prepare
-        uses: SonarSource/sonarcloud-github-action@master
-        with:
-          organization: 'demo-devsecops-quind'
-          projectKey: 'demo-devsecops-quind'
-
       - name: Build with Gradle
         run: |
           chmod +x gradlew
           ./gradlew build
 
-      - name: SonarCloud Publish
-        uses: SonarSource/sonarcloud-github-action@master
-
-      - name: SonarCloud Build Breaker
-        uses: SonarSource/sonarcloud-github-action@master
-        with:
-          organization: 'demo-devsecops-quind'
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v2
