@@ -1,15 +1,50 @@
-name: Docker Image CI
+name: Build Java Gradle
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
+  build_java_gradle:
+    runs-on: ubuntu-latest
 
-  hello_world:
-    runs-on: ubuntu-20.04
     steps:
-      - name: imprime hola
-        run: echo "hola mundo"
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
+      - name: Replace Tokens VersionController
+        uses: actions/replace@v2
+        with:
+          files: '**/*.java'
+
+      - name: SonarCloud Prepare
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          organization: 'demo-devsecops-quind'
+          projectKey: 'demo-devsecops-quind'
+
+      - name: Build with Gradle
+        run: |
+          chmod +x gradlew
+          ./gradlew build
+
+      - name: SonarCloud Publish
+        uses: SonarSource/sonarcloud-github-action@master
+
+      - name: SonarCloud Build Breaker
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          organization: 'demo-devsecops-quind'
+
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifact-$(github.repository)
+          path: build/libs/
+
