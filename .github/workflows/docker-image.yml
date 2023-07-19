@@ -18,7 +18,13 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '17'
-
+          
+      - name: SonarCloud Prepare
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          organization: 'demo-devsecops-quind'
+          projectKey: 'demo-devsecops-quind'
+          
       - name: Build with Gradle
         run: |
           chmod +x gradlew
