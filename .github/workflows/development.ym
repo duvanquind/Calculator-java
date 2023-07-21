@@ -46,9 +46,25 @@ jobs:
           chmod +x gradlew
           ./gradlew build
 
-
       - name: Publish Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Artifact-$(github.repository)
           path: build/libs/
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run SCA
+        uses: dependency-check/dependency-check-github-action@v2
+        with:
+          projectName: 'OWASP Dependency Check'
+          scanPath: '$(System.DefaultWorkingDirectory)/**'
+          format: 'ALL'
+          dependencyCheckVersion: '7.1.1'
+        continue-on-error: true
+
+      - name: Publish SCA Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: SCA-Results
+          path: '$(Common.TestResultsDirectory)/dependency-check'
