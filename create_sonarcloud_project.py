@@ -6,8 +6,8 @@ sonarcloud_base_url = 'https://sonarcloud.io'
 sonarcloud_token = os.environ['SONAR_TOKEN']
 
 # Datos del nuevo proyecto a crear
-project_key = 'quind123'
-project_name = 'Nuevo Proyecto'
+project_key = 'duvanquind1'
+project_name = 'calculadora'
 organization = 'duvanquind'  # Nombre de tu organización en SonarCloud
 
 # Endpoint para la creación de proyectos
