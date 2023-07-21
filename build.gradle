@@ -21,7 +21,7 @@ dependencies {
 
 sonar {
   properties {
-    property "sonar.projectKey", "calculator-java-gradle-actions"
+    property "sonar.projectKey", "duvanquind_calculator-java-gradle-actions"
     property "sonar.organization", "duvanquind"
     property "sonar.host.url", "https://sonarcloud.io"
   }
