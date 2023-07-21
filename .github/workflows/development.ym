@@ -3,7 +3,7 @@ name: Build Java Gradle
 on:
   push:
     branches:
-      - master
+      - master 
 
 jobs:
   build_java_gradle:
