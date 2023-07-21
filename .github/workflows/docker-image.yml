@@ -20,15 +20,9 @@ jobs:
           java-version: '17'
           
       - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          chmod +x gradlew
-          ./gradlew sonarqube \
-            -Dsonar.organization=demo-devsecops-quind \
-            -Dsonar.projectKey=calculator-java-gradle \
-            -Dsonar.host.url=https://sonarcloud.io/organizations/demo-devsecops-quind/projects \
-            -Dsonar.login=${SONAR_TOKEN}
           
       - name: Build with Gradle
         run: |
