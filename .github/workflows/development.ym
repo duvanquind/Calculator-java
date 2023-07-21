@@ -1,70 +1,25 @@
-name: Build Java Gradle
+name: Crear Proyecto SonarCloud
 
 on:
   push:
     branches:
-      - master 
+      - main
 
 jobs:
-  build_java_gradle:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout código
         uses: actions/checkout@v2
 
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '17'
-          
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-          
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-      - name: Cache Gradle packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew build sonar --info
-          
-      - name: Build with Gradle
+      - name: Instalar dependencias Python
         run: |
-          chmod +x gradlew
-          ./gradlew build
+          python -m pip install --upgrade pip
+          pip install requests
 
-      - name: Publish Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Artifact-$(github.repository)
-          path: build/libs/
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Crear Proyecto SonarCloud
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: python create_sonarcloud_project.py
 
-      - name: Run SCA
-        uses: dependency-check/dependency-check-github-action@v2
-        with:
-          projectName: 'OWASP Dependency Check'
-          scanPath: '$(System.DefaultWorkingDirectory)/**'
-          format: 'ALL'
-          dependencyCheckVersion: '7.1.1'
-        continue-on-error: true
-
-      - name: Publish SCA Results
-        uses: actions/upload-artifact@v2
-        with:
-          name: SCA-Results
-          path: '$(Common.TestResultsDirectory)/dependency-check'
