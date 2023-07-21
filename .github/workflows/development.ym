@@ -3,7 +3,7 @@ name: Crear Proyecto SonarCloud
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
