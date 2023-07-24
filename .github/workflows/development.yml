@@ -76,7 +76,9 @@ jobs:
 
       steps:
         - name: print
-          run: echo "hola mundo"
+          run: |
+            echo "hola mundo"
+            echo $(github.repository)
   job3:
       name: dependencias  
       runs-on: ubuntu-latest
