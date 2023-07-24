@@ -20,8 +20,6 @@ jobs:
           export ORGANIZATION_KEY=duvanquind
           export PROJECT_KEY=123quind
           export PROJECT_NAME=test-calculadora
-
-          # Crea el proyecto en SonarCloud utilizando la API
           curl -X POST -u "$SONAR_TOKEN:" \
             -d "name=$PROJECT_NAME" \
             -d "project=$PROJECT_KEY" \
