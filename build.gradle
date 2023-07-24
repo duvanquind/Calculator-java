@@ -21,7 +21,7 @@ dependencies {
 
 sonar {
   properties {
-    property "sonar.projectKey", "12quind"
+    property "sonar.projectKey", "1234quind"
     property "sonar.organization", "duvanquind"
     property "sonar.host.url", "https://sonarcloud.io"
   }
