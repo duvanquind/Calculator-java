@@ -3,7 +3,7 @@ name: Build Java Gradle
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build_java_gradle:
@@ -52,9 +52,3 @@ jobs:
         with:
           name: Artifact-$(github.repository)
           path: build/libs/
-            chmod +x gradlew
-            ./gradlew build
-      - name: Publish Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Artifact-$(github.repository)
