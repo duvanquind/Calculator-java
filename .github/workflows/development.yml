@@ -86,6 +86,5 @@ jobs:
           uses: actions/download-artifact@v2
           with:
             name: Artifact-$(github.repository)
-            path: build/libs/
       
       
