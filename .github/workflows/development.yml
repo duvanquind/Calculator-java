@@ -54,16 +54,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew build sonar --info
           
-      - name: Build with Gradle
-        run: |
-          chmod +x gradlew
-          ./gradlew build
-
-
-      - name: Publish Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Artifact-$(github.repository)
-          path: build/libs/
 
 
