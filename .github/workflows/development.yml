@@ -10,16 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout código
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Instalar dependencias Python
+      - name: Create SonarCloud Project
         run: |
-          python -m pip install --upgrade pip
-          pip install requests
+          # Configura las variables necesarias
+          export SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
+          export ORGANIZATION_KEY=duvanquind
+          export PROJECT_KEY=123quind
+          export PROJECT_NAME=test-calculadora
 
-      - name: Crear Proyecto SonarCloud
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: python create_sonarcloud_project.py
-
+          # Crea el proyecto en SonarCloud utilizando la API
+          curl -X POST -u "$SONAR_TOKEN:" \
+            -d "name=$PROJECT_NAME" \
+            -d "project=$PROJECT_KEY" \
+            -d "organization=$ORGANIZATION_KEY" \
+            "https://sonarcloud.io/api/projects/create"
