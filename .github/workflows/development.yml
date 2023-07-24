@@ -73,7 +73,7 @@ jobs:
           # Configura las variables necesarias
           export SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
           export ORGANIZATION_KEY=duvanquind
-          export PROJECT_KEY=123quind
+          export PROJECT_KEY=1234quind
           export PROJECT_NAME=test-calculadora
           curl -X POST -u "$SONAR_TOKEN:" \
             -d "name=$PROJECT_NAME" \
