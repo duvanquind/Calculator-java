@@ -78,7 +78,7 @@ jobs:
         - name: print
           run: |
             echo "hola mundo"
-            echo ${{ env.GITHUB_REPOSITORY }}
+            echo $GITHUB_WORKFLOW
   job3:
       name: dependencias  
       runs-on: ubuntu-latest
