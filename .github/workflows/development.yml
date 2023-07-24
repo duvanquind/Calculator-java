@@ -29,7 +29,7 @@ jobs:
           export SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
           export ORGANIZATION_KEY=quind-test
           export PROJECT_KEY=quind
-          export PROJECT_NAME=test
+          export PROJECT_NAME=test-calculadora
           curl -X POST -u "$SONAR_TOKEN:" \
             -d "name=$PROJECT_NAME" \
             -d "project=$PROJECT_KEY" \
@@ -37,5 +37,35 @@ jobs:
             "https://sonarcloud.io/api/projects/create"
 
 
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
 
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew build sonar --info
+          
+
+      - name: Build with Gradle
+        run: |
+          chmod +x gradlew
+          ./gradlew build
+
+
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifact-$(github.repository)
+          path: build/libs/
       
