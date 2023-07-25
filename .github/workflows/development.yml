@@ -74,6 +74,8 @@ jobs:
   job2:
     name: Variable que se desea ver
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.tarea_uno.outputs.test }}
     env:
       Test_variable: "Así la defino en un job y la puedo utilizar en steps"
 
@@ -84,6 +86,8 @@ jobs:
           echo "variable en este job: $Test_variable"
       - name: Set variable
         run: echo "variable=esta variable se define en un step" >> "$GITHUB_ENV"
+      - name: tarea_uno
+        run: echo "::set-output name=test::hello"
       - name: use the variable
         run:  echo "Acá se ve el texto que se definió en la tarea anterior:${{ env.variable }}"
       - name: Publicar Artefacto
@@ -99,6 +103,9 @@ jobs:
     needs: job2
 
     steps:
+      - env: 
+          OUTPUT1: ${{needs.job1.outputs.output1}}
+        run: echo $OUTPUT1
       - name: Descargar Artefacto
         uses: actions/download-artifact@v2
         with:
