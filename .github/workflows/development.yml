@@ -116,5 +116,24 @@ jobs:
           echo "la frase que estoy mostrando es: $Test_variable "
       - name: use the variable
         run:  echo "Acá se ve el texto que se definió en la tarea anterior:${{ env.variable }}"
+  job4:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+    steps:
+      - id: step1
+        run: echo "::set-output name=test::hello"
+      - id: step2
+        run: echo "::set-output name=test::world"
+  job5:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - env:
+          OUTPUT1: ${{needs.job4.outputs.output1}}
+          OUTPUT2: ${{needs.job4.outputs.output2}}
+        run: echo "$OUTPUT1 $OUTPUT2"
       
       
