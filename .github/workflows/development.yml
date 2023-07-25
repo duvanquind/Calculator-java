@@ -75,13 +75,17 @@ jobs:
     name: Variable que se desea ver
     runs-on: ubuntu-latest
     env:
-      Test_variable: "Esto se vera en el job 3"
+      Test_variable: "Así la defino en un job y la puedo utilizar en steps"
 
     steps:
       - name: Ejecutar y Publicar
         run: |
           echo "Hello from Job 1" >> my-variable.txt
           echo "variable en este job: $Test_variable"
+      - name: Set variable
+        run: echo "variable=esta variable se define en un step" >> "$GITHUB_ENV"
+      - name: use the variable
+        run:  echo "${{ env.variable }}"
       - name: Publicar Artefacto
         uses: actions/upload-artifact@v2
         with:
