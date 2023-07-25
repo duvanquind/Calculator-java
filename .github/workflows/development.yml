@@ -70,23 +70,32 @@ jobs:
             name: Artifact-$(GITHUB_REPOSITORY)
             path: build/libs/
     
-  job2:
-      name: Analyze
-      runs-on: ubuntu-latest
 
-      steps:
-        - name: print
-          run: |
-            echo "hola mundo"
-            echo $GITHUB_REPOSITORY
+  job2:
+    name: Variable
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ejecutar y Publicar
+        run: echo "Hello from Job 1" >> my-variable.txt
+      - name: Publicar Artefacto
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: my-variable.txt
+
   job3:
-      name: dependencias  
-      runs-on: ubuntu-latest
-      needs: [job1,job2]
-      steps:
-        - name: Download Artifact
-          uses: actions/download-artifact@v2
-          with:
-            name: Artifact-$(GITHUB_REPOSITORY)
+    name: Descargar
+    runs-on: ubuntu-latest
+
+    needs: job2
+
+    steps:
+      - name: Descargar Artefacto
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+      - name: Leer Variable
+        run: cat my-variable.txt
       
       
