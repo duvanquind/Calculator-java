@@ -85,7 +85,7 @@ jobs:
       - name: Set variable
         run: echo "variable=esta variable se define en un step" >> "$GITHUB_ENV"
       - name: use the variable
-        run:  echo "esta frase que se puede ver es:${{ env.variable }}"
+        run:  echo "Acá se el texto que se definió en la tarea anterior:${{ env.variable }}"
       - name: Publicar Artefacto
         uses: actions/upload-artifact@v2
         with:
