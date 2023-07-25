@@ -86,7 +86,7 @@ jobs:
           echo "variable en este job: $Test_variable"
       - name: Set variable
         run: echo "variable=esta variable se define en un step" >> "$GITHUB_ENV"
-      - name: tarea_uno
+      - id: tarea_uno
         run: echo "::set-output name=test::HABLALO PUES!!!!"
       - name: use the variable
         run:  echo "Acá se ve el texto que se definió en la tarea anterior:${{ env.variable }}"
