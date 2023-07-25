@@ -79,7 +79,9 @@ jobs:
 
     steps:
       - name: Ejecutar y Publicar
-        run: echo "Hello from Job 1" >> my-variable.txt
+        run: |
+          echo "Hello from Job 1" >> my-variable.txt
+          echo "variable en este job: $Test_variable"
       - name: Publicar Artefacto
         uses: actions/upload-artifact@v2
         with:
