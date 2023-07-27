@@ -24,9 +24,9 @@ jobs:
           done
         continue-on-error: true
         
-      - name: Publish Artifact
+      - name: Publish Attestation SAST
         uses: actions/upload-artifact@v2
         with:
-          name: static-analysis
-          path: static-analysis
+          name: 'Static Analysis (SAST)'
+          path: '$(github.workspace)/static-analysis'
 
