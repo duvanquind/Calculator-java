@@ -1,9 +1,7 @@
 name: Build Java Gradle
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 jobs:
   job1: 
       name: Build and Analyze
@@ -141,5 +139,8 @@ jobs:
           path: build/libs/
       - name: Arbol
         run: tree
+  job_techincal:
+    uses: ./.github/workflows/technical.yml
+ 
       
       
