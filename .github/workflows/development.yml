@@ -134,5 +134,12 @@ jobs:
           OUTPUT1: ${{needs.job4.outputs.output1}}
           OUTPUT2: ${{needs.job4.outputs.output2}}
         run: echo "$OUTPUT1 $OUTPUT2"
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Artifact-$(github.repository)
+          path: build/libs/
+      - name: Arbol
+        run: tree
       
       
