@@ -1,0 +1,31 @@
+name: techinal Excellence
+
+on:
+  workflow_call:
+jobs:
+  technical:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código actual
+        uses: actions/checkout@v2
+
+      - name: Ejecutar SAST Scan
+        run: |
+          docker run -v "$(pwd):/app:cached" -v "$(pwd)/reports:/reports:cached" shiftleft/sast-scan scan --src /app --out_dir /reports/static-analysis
+          report_files=$(find reports/static-analysis -name "*.json")
+
+          for report_file in $report_files; do
+              critical_vulnerabilities=$(jq -r '.vulnerabilities | map(select(.severity == "Critical")) | length' "$report_file" 2>/dev/null)
+              
+              if [[ $? -eq 0 ]] && [[ $critical_vulnerabilities -gt 0 ]]; then
+                  echo "Se encontraron vulnerabilidades críticas."
+                  exit 1
+              fi
+          done
+        continue-on-error: true
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+            name: Static Analysis (SAST)
+            path: build/libs/
