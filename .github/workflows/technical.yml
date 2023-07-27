@@ -28,5 +28,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: 'Static Analysis (SAST)'
-          path: '$(github.workspace)/static-analysis'
+          path: 'bin/libs/static-analysis'
 
