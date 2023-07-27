@@ -24,8 +24,9 @@ jobs:
           done
         continue-on-error: true
         
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.2
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
         with:
-            name: Static Analysis (SAST)
-            path: build/libs/static-analysis
+          name: static-analysis
+          path: static-analysis
+
