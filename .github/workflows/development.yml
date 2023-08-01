@@ -21,6 +21,7 @@ jobs:
           with:
             fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
+
         - name: Create SonarCloud Project
           run: |
             # Configura las variables necesarias
@@ -28,11 +29,16 @@ jobs:
             export ORGANIZATION_KEY=quind-test
             export PROJECT_KEY=quind
             export PROJECT_NAME=test-calculadora
+            export PROJECT_BRANCH=develop
+
+            # Crea el proyecto en SonarCloud especificando la rama "develop"
             curl -X POST -u "$SONAR_TOKEN:" \
               -d "name=$PROJECT_NAME" \
               -d "project=$PROJECT_KEY" \
               -d "organization=$ORGANIZATION_KEY" \
+              -d "branch=$PROJECT_BRANCH" \
               "https://sonarcloud.io/api/projects/create"
+
 
 
         - name: Cache SonarCloud packages
