@@ -21,6 +21,15 @@ jobs:
           with:
             fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       
+        - name: Install SonarScanner
+          run: |
+            sudo apt-get update
+            sudo apt-get install -y unzip
+            curl -OL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+            unzip sonar-scanner-cli-4.6.2.2472-linux.zip -d /opt
+            echo 'export PATH=$PATH:/opt/sonar-scanner-4.6.2.2472-linux/bin' >> $HOME/.bashrc
+            source $HOME/.bashrc
+      
         - name: Create SonarCloud Project
           env:
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
